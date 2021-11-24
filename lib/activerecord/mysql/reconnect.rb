@@ -139,7 +139,7 @@ module Activerecord::Mysql::Reconnect
             if enable_retry and n > 1
               logger.warn("Query retry failed. (#{build_error_message(e, sql, conn)})")
             end
-
+            ExceptionNotifier.notify_exception(e)
             raise e
           end
         end
